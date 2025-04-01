@@ -15,6 +15,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true  # 强制使用 Node.js 20
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,16 +25,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4  # 更新为 v4
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4  # 更新为 v4
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1  # 更新为 v1
         with:
           source: ./
           destination: ./_site
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1  # 上传生成的页面，直接使用这个 action 来替代 upload-artifact
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4  # 更新为 v4
         with:
-          path: ./_site  # 确保上传 _site 文件夹内容
+          path: ./_site
 
   deploy:
     environment:
@@ -42,4 +45,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # 使用 deploy-pages 进行部署
+        uses: actions/deploy-pages@v2  # 更新为 v2
