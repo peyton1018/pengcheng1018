@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v3  # 修改为 v3
         with:
           name: jekyll-build
-          path: ./_site
+          path: ./_site/**  # 确保指定上传 _site 目录下的所有内容
 
   deploy:
     environment:
