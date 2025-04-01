@@ -29,10 +29,9 @@ jobs:
           source: ./
           destination: ./_site
       - name: Upload artifact
-        uses: actions/upload-artifact@v3  # 修改为 v3
+        uses: actions/upload-pages-artifact@v1  # 上传生成的页面，直接使用这个 action 来替代 upload-artifact
         with:
-          name: jekyll-build
-          path: ./_site/**  # 确保指定上传 _site 目录下的所有内容
+          path: ./_site  # 确保上传 _site 文件夹内容
 
   deploy:
     environment:
@@ -43,4 +42,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2  # 更新为 v2
+        uses: actions/deploy-pages@v2  # 使用 deploy-pages 进行部署
