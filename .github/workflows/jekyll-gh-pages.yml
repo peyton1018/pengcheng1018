@@ -29,7 +29,10 @@ jobs:
           source: ./
           destination: ./_site
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1  # 更新为 v1
+        uses: actions/upload-artifact@v3  # 修改为 v3
+        with:
+          name: jekyll-build
+          path: ./_site
 
   deploy:
     environment:
